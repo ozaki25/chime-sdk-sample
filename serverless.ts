@@ -1,24 +1,21 @@
 import type { Serverless } from 'serverless/aws';
 
 const serverlessConfiguration: Serverless = {
-  service: {
-    name: 'chime-sample',
-    // app and org for use with dashboard.serverless.com
-    // app: your-app-name,
-    // org: your-org-name,
-  },
+  service: { name: 'chime-sample' },
   frameworkVersion: '2',
   custom: {
     webpack: {
       webpackConfig: './webpack.config.js',
-      includeModules: true
-    }
+      includeModules: true,
+    },
   },
   // Add the serverless-webpack plugin
   plugins: ['serverless-webpack'],
   provider: {
     name: 'aws',
     runtime: 'nodejs12.x',
+    region: 'ap-northeast-1',
+    profile: 'dev1',
     apiGateway: {
       minimumCompressionSize: 1024,
     },
@@ -34,11 +31,11 @@ const serverlessConfiguration: Serverless = {
           http: {
             method: 'get',
             path: 'hello',
-          }
-        }
-      ]
-    }
-  }
-}
+          },
+        },
+      ],
+    },
+  },
+};
 
 module.exports = serverlessConfiguration;
